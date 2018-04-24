@@ -1,29 +1,34 @@
-# Definieren Sie vier Funktionen fcos, fsin, fsum, fpol für den Kosinusterm, den
-#Sinusterm, die Summe auf der linken Gleichungsseite und die Polarform der rechten
-#Seite.
-#Geeignete Operationen zur Berechnung von A und φ aus a und b finden Sie mit den
-#Hilferufen ?sqrt und ?atan.
+#### Aufgabe 1 #####
+#Julia B�hlke
+#Selina M�ller
 
-fcos <- function(){
-  
-}
-fsin <- function(){
-  
-}
-fsum <- function(){
-  
-}
-fpol <- function(){
-  
+fdraw <- function(x = seq(0,8,0.1)){
+ # plot(x, y = fcos(x), type = 'l', col = 'red', xlab = 'x', ylab = 'y')
+  #lines(x, y = fsin(x), col = 'blue')
+  plot(x, y = fsum(x), col = 'green') 
+  points(x, y = fpol(x), col = 'yellow')
 }
 
-#Zeichnen Sie die vier Funktionen mit unterschiedlichen Farben in ein gemeinsames
-#Koordinatensystem mit Definitionsbereich 0 ≤ x ≤ 8. Verwenden Sie (z.B.) plotAufrufe und wählen Sie Punktdarstellung #für fpol und Liniendarstellung für die drei
-#anderen Verläufe
+#Cosinusterm
+fcos <- function(x){
+    
+}
+#Sinusterm
+fsin <- function(x){
+  
+}
+#linke Summe
+fsum <- function(x){
+  return(-3*cos(x)-4*sin(x))
+}
+#Polarform ----- mit A ?
+fpol <- function(x){
+ A <- sqrt((-3)**2 + (-4)**2) 
+ p <- atan(-(-4)/(-3))
+ 
+ return(A*cos(x+p))
+}
 
-plot (x,y, add=TRUE, type = 'l') # sonst
-plot (x,y, add=TRUE, type = 'p') # fpol
-
-#pdf(file=’Rplot.pdf’, fpol)
+#pdf(file="Rplot.pdf", fpol)
 
 ##### polar.pdf ?
