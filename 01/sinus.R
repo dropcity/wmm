@@ -1,51 +1,59 @@
 #### sinus.pdf ? ####
 
+#definitionsbereich
+t <- seq(0,1,0.01)
 
-#t <- seq(1,5,0.1)
-
-#w <- 1/t #Frequenz
-
-#####???
+#Sinuswelle
 fn <- function(n, A=(1/n), p=0){
 
-  f <- A*sin(2*pi*w*t+p)
+  f <- A*sin((2*pi)*t+p)
   
 }
 
-
+pdf(file = 'sinus.pdf')
+#Layout der Plots
 layout (matrix (c(1,2,3,4,5,6), ncol=2))
 
-#####a#####
-#(a) Ein Feld mit den fÃ¼nf Wellen f1; : : : ; f5.
-#plot() line()
+#### a #### 
+plot(x = t, main = "Teil a", xlim = range(0:1), ylim = range(-3:3), xlab = 't', ylab = 'f')
+for(n in seq(1:5)) lines(x = t,y = fn(n), col = n+1)
 
-#####b#####
-#(b) Ein Feld mit der Summenkurve f1 + f2 + f3 + f4 + f5.
-#plot(sum())
+#### b ####
+temp <- 0
+for (n in seq(1:5)) {
+  temp <- temp + fn(n)
+}
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-3:3), main = 'Teil b: Summe für n = 1...5', ylab = 'f')
 
-#####c#####
-#(c) Wie Feld (b), aber mit den Amplituden An = (1\2)n, n = 1; : : : ; 5.
+#### c #### 
+temp <- 0
+for (n in seq(1:5)) {
+  temp <- temp + fn(n, A = (1/2)**n)
+}
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-3:3), main = 'Teil c: A = (1/2)^n', ylab = 'f')
 
-#####d####
-#(d) Wie Feld (b), aber mit den Amplituden An = 1\sqrt(n), n = 1; : : : ; 5.
+#### d ####
+temp <- 0
+for (n in seq(1:5)) {
+  temp <- temp + fn(n, A = (1/sqrt(n)))
+}
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-3:3), main = 'Teil d: A = (1/sqrt(n)', ylab = 'f')
 
-#####e####
-#(e) Wie Feld (b), aber mit den Phasen p= pi/3, n = 1; : : : ; 5.
+#### e ####
+temp <- 0
+for (n in seq(1:5)) {
+  temp <- temp + fn(n, p=(pi/3))
+}
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-3:3), main = 'Teil e: p=(pi/3)', ylab = 'f')
 
-####f####
-#(f) Ein Feld mit der Summenkurve f2 + f4 + f6 + f8 + f10
+#### f ####
+n <- seq(2,10,2)
+temp <- 0
+for (n in seq(1:5)) {
+  temp <- temp + fn(n)
+}
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-3:3), main = 'Teil f: Summe für n = 2,4,6,8,10', ylab = 'f')
 
-
-#####Bsp##### - löschen
-x <- c (runif (123), rnorm (50, mean=2, sd=0.5))
-
-boxplot (x, col="green")
-plot (sort(x), col="blue", type="l")
-hist (x, col="red", lab=TRUE, main="")
-boxplot (x, col="green")
-plot (sort(x), col="blue", type="h")
-hist (x, col="red", lab=TRUE, main="")
-######
-
+#
 layout (1) 
-
+dev.off()
