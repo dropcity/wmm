@@ -44,13 +44,12 @@ for (i in seq(1:25)){
     img.e[i,j,1]<- round(img.e[i,j,1], 4)
     img.e[i,j,2]<- round(img.e[i,j,2], 4)
     img.e[i,j,3]<- round(img.e[i,j,3], 4)
-    if(img.e[i,j,2]<0.0001) img.e[i,j,2]<-0
     r<-img.e[i,j,1] 
     b<-img.e[i,j,2] 
     g<-img.e[i,j,3] 
     print(paste("rounded rbg: ", r, b, g))
 max <-img.e[i,j,1]
-if(img.e[i,j,2] > img.e[i,j,1])  print("YAAS")
+if(img.e[i,j,2] > img.e[i,j,1])  max<-img.e[i,j,2]
 
 if(img.e[i,j,3] > img.e[i,j,2]) max<-img.e[i,j,3]
 factor<-1
