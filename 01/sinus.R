@@ -11,7 +11,7 @@ fn <- function(n, A=(1/n), p=0){
   
 }
 
-#pdf(file = 'sinus.pdf')
+pdf(file = 'sinus2.pdf')
 #Layout der Plots
 layout (matrix (c(1,2,3,4,5,6), ncol=2))
 
@@ -24,7 +24,7 @@ temp <- 0
 for (n in seq(1:5)) {
   temp <- temp + fn(n)
 }
-plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-2:2), main = 'Teil b: Summe für n = 1...5', ylab = 'f')
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-2:2), main = 'Teil b: Summe f?r n = 1...5', ylab = 'f')
 
 #### c #### 
 temp <- 0
@@ -52,8 +52,8 @@ temp <- 0
 for (n in seq(2,10,2)) {
   temp <- temp + fn(n)
 }
-plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-1:1), main = 'Teil f: Summe für n = 2,4,6,8,10', ylab = 'f')
+plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-1:1), main = 'Teil f: Summe f?r n = 2,4,6,8,10', ylab = 'f')
 
 #
 layout (1) 
-#dev.off()
+^dev.off()

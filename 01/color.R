@@ -49,7 +49,10 @@ for (i in seq(1:25)){
     g<-img.e[i,j,3] 
     print(paste("rounded rbg: ", r, b, g))
 max <-img.e[i,j,1]
-if(img.e[i,j,2] > img.e[i,j,1])  max<-img.e[i,j,2]
+
+#print(paste("max: " , max))
+if(img.e[i,j,2] > img.e[i,j,1]) { max<-img.e[i,j,2]
+print(paste("max: ", max))}
 
 if(img.e[i,j,3] > img.e[i,j,2]) max<-img.e[i,j,3]
 factor<-1
@@ -59,10 +62,10 @@ img.e[i,j,1:3]<-(img.e[i,j,1:3]*factor)
 r<-img.e[i,j,1] 
 b<-img.e[i,j,2] 
 g<-img.e[i,j,3] 
-print(paste(i, j, " : ", max ,factor," rbg: ",r, b ,g))
+print(paste(i, j, " maximum: ", max ,factor," rbg: ",r, b ,g))
 print(r)
-}
-}
+}}
+
 plot.array(img.e)
 
 
