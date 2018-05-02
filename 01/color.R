@@ -2,8 +2,6 @@
 
 load (file='color.rda')
 plot(rlogo)
-#pdf(file = 'color.pdf')
-#plot(0,0, type='n', xaxt='n', yaxt='n', xlab='', ylab='', bty='n') 
 
 #Vektor mit Intensittswerten
 intensity <- seq(0,1,length.out = 25) 
@@ -16,7 +14,7 @@ plot.array(img.a, main = "a) Graustufenbild")
 ###### b #####
 img.b <- array(0,dim = c(25,25,3))
 for (i in seq(1:25)) img.b[i,25:1,2] <- intensity[1:25]
-plot.array(img.b, main = "b) Vertikal aufsteigende GrÃ¼nwerte" )
+plot.array(img.b, main = "b) Vertikal aufsteigende Grünwerte" )
 
 ##### c #####
 img.c  <- array(0,dim = c(25,25,3))
@@ -32,7 +30,7 @@ img.d <- img.c
 img.d[1:25,1:25,2] <- 1-(img.d[1:25,1:25,1] + img.d[1:25,1:25,3])
 img.d[img.d[1:25,1:25,2]>1] <- 1 
 img.d[img.d[1:25,1:25,2]<0] <- 0
-plot.array(img.d, main = "d) Addierte GrÃ¼nwerte ")
+plot.array(img.d, main = "d) Addierte Grünwerte ")
 
 ##### e #####
 
