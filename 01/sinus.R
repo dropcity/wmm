@@ -11,7 +11,7 @@ fn <- function(n, A=(1/n), p=0){
   
 }
 
-pdf(file = 'sinus2.pdf')
+#pdf(file = 'sinus2.pdf')
 #Layout der Plots
 layout (matrix (c(1,2,3,4,5,6), ncol=2))
 
@@ -56,4 +56,4 @@ plot(x = t,y = temp, type = 'l', xlim = range(0:1), ylim = range(-1:1), main = '
 
 #
 layout (1) 
-^dev.off()
+#dev.off()
