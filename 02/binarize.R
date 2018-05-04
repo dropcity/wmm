@@ -8,48 +8,37 @@ layout (matrix (c(1,2,3,4), ncol=2))
 # das Grauwerthistogramm in 25 Stufen; Bild und Histogramm zeichnen Sie bitte in
 # eine (2 × 2)-Grafik.
 plot.array(algae)
-hist(algae, breaks = 25, freq = T, col = 'green', xlab = 'Algae')
+hist(algae, breaks = 25, freq = F, col = 'green', xlab = 'Algae')
 
 #### b ####
 alga <- algae[210:260, 60:110]
 plot.array(alga)
-hist(alga, breaks = 25, freq = T, col = 'green', xlab = 'Alga')
+hist(alga, breaks = 25, freq = F, col = 'green', xlab = 'Alga')
 
 #Ende der ersten Grafik (a + b)
 layout (1) 
 
 #### c ####
-#par(mfrow=c(3,3))
 binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
-  bin <-(x>threshold)
-  if (plot) plot.array(bin)  
+  b <- (x>threshold)
+  #print(b)
+  if (plot) plot.array(b)  
+  return(b)
+
 }
-binarize(alga, threshold = threshold.vec[9], plot = TRUE)
-#plot.array(binarize(alga))
+#Vektor mit allen thresholds
 threshold.vec <-  seq(0.2,0.5,length.out = 9)
 
-#layout(matrix(c(1,2,3,4,5,6), ncol = 3))
-#plot.array(binarize(x = alga, threshold = 0.5))
-#
-#mapply(plot.array,binarize(x=alga, threshold = seq(0.2,0.5, length.out = 9)) )
-#binarize.vec <- Vectorize(binarize,"x","threshold")
-#plot.array(binarize.vec(x=alga, threshold = threshold.vec))
-bins <- binarize(alga, threshold.vec[1:9])
-bin1 <- binarize(alga, threshold.vec[1])
-plot.array(bins)
-#mapply(function(x) plot.array(binarize.vec(alga, threshold.vec)),binarize.vec(alga, threshold.vec))
-#layout(1)
-#
-#par(mfrow = c(3,3))
-#lapply(binarize(x=alga, threshold = threshold.vec), function(x) {plot.array(binarize(x=alga, threshold = threshold.vec))})
-
-  
-####TODO plotting??????
-
+### plots
+par(mfrow = c(3,3))
+plots <- sapply(threshold.vec, function(threshold.vec){
+  b <- binarize(alga, threshold = threshold.vec)
+  plot.array(b, main = threshold.vec)
+})
 
 
 #### d ####
-binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
+binarize.d <- function(x, method='fixed', threshold=0.5, plot = FALSE){
   switch (method,
     'median' = bin <-(x>median(x)),
     'mean' = bin <-(x>mean(x)),
@@ -58,9 +47,34 @@ binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
   )
   
   if (plot) plot.array(bin)  
+  
+  return(bin)
 }
 
 ##### e #####
+#algae
+method.vec <- c('median','mean','fixed')
+par(mfrow = c(2,2))
+plots <- sapply(method.vec, function(method.vec){
+  b <- binarize.d(algae, method = method.vec)
+  plot.array(b, main = method.vec)
+})
+
+#alga
+par(mfrow = c(2,2))
+plots <- sapply(method.vec, function(method.vec){
+  b <- binarize.d(alga, method = method.vec)
+  plot.array(b, main = method.vec)
+})
+
+#tonga
+par(mfrow = c(2,2))
+plots <- sapply(method.vec, function(method.vec){
+  b <- binarize.d(tonga, method = method.vec)
+  plot.array(b, main = method.vec)
+})
+
+########
 binarize(alga, method = 'median', plot = TRUE)
 binarize(alga, method = 'mean', plot = TRUE)
 binarize(alga, method = 'inter', plot = TRUE) #### TODO kmeans ???
