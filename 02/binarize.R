@@ -3,7 +3,8 @@ load('binarize.rda')
 #plot.array(tonga)
 
 #### a ####
-layout (matrix (c(1,2,3,4), ncol=2))
+par(mfrow = c(2,2))
+
 plot.array(algae)
 hist(algae, breaks = 25, freq = F, col = 'green', xlab = 'Algae')
 
@@ -11,9 +12,6 @@ hist(algae, breaks = 25, freq = F, col = 'green', xlab = 'Algae')
 alga <- algae[210:260, 60:110]
 plot.array(alga)
 hist(alga, breaks = 25, freq = F, col = 'green', xlab = 'Alga')
-
-#Ende der ersten Grafik (a + b)
-layout (1) 
 
 #### c ####
 binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
