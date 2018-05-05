@@ -4,14 +4,15 @@ load('binarize.rda')
 
 #### a ####
 par(mfrow = c(2,2))
+h.breaks <- seq(0,1, length.out = 25)
 
 plot.array(algae)
-hist(algae, breaks = 25, freq = F, col = 'green', xlab = 'Algae')
+hist(algae, breaks = h.breaks, col = 'green', xlab = 'Algae')
 
 #### b ####
 alga <- algae[210:260, 60:110]
 plot.array(alga)
-hist(alga, breaks = 25, freq = F, col = 'green', xlab = 'Alga')
+hist(alga, breaks = h.breaks, col = 'green', xlab = 'Alga')
 
 #### c ####
 binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
