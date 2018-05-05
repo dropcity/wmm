@@ -4,9 +4,6 @@ load('binarize.rda')
 
 #### a ####
 layout (matrix (c(1,2,3,4), ncol=2))
-# Lesen Sie die Kommandohilfe zur hist-Funktion und erzeugen Sie zum Bild algae
-# das Grauwerthistogramm in 25 Stufen; Bild und Histogramm zeichnen Sie bitte in
-# eine (2 × 2)-Grafik.
 plot.array(algae)
 hist(algae, breaks = 25, freq = F, col = 'green', xlab = 'Algae')
 
@@ -38,45 +35,48 @@ plots <- sapply(threshold.vec, function(threshold.vec){
 
 
 #### d ####
-binarize.d <- function(x, method='fixed', threshold=0.5, plot = FALSE){
+binarize <- function(x, method='fixed', threshold=0.5, plot = FALSE){
   switch (method,
     'median' = bin <-(x>median(x)),
-    'mean' = bin <-(x>mean(x)),
-    'inter' = bin <-(x>kmeans(x)),
-    'fixed' = bin <-(x>threshold)
+    'mean'   = bin <-(x>mean(x)),
+    'inter'  = {km <- kmeans(x,2)
+                thres.km <- (mean(km$centers[1,])+mean(km$centers[2,]))/2
+                #print(thres.km)
+                bin <-(x>thres.km)},
+    'fixed'  = bin <-(x>threshold)
   )
   
-  if (plot) plot.array(bin)  
+  if (plot) plot.array(bin, main = method)  
   
   return(bin)
 }
 
 ##### e #####
+#Vektor mit allen Methoden
+method.vec <- c('median','mean', 'inter', 'fixed')
+
 #algae
-method.vec <- c('median','mean','fixed')
 par(mfrow = c(2,2))
 plots <- sapply(method.vec, function(method.vec){
-  b <- binarize.d(algae, method = method.vec)
-  plot.array(b, main = method.vec)
+  b <- binarize(algae, method = method.vec, plot = TRUE)
+  #plot.array(b, main = method.vec)
 })
 
 #alga
 par(mfrow = c(2,2))
 plots <- sapply(method.vec, function(method.vec){
-  b <- binarize.d(alga, method = method.vec)
-  plot.array(b, main = method.vec)
+  b <- binarize(alga, method = method.vec, plot = TRUE)
+  #plot.array(b, main = method.vec)
 })
 
 #tonga
 par(mfrow = c(2,2))
 plots <- sapply(method.vec, function(method.vec){
-  b <- binarize.d(tonga, method = method.vec)
-  plot.array(b, main = method.vec)
+  b <- binarize(tonga, method = method.vec, plot = TRUE)
+  #plot.array(b, main = method.vec)
 })
 
 ########
-binarize(alga, method = 'median', plot = TRUE)
-binarize(alga, method = 'mean', plot = TRUE)
-binarize(alga, method = 'inter', plot = TRUE) #### TODO kmeans ???
-binarize(alga, method = 'fixed', plot = TRUE)
+
+
 
