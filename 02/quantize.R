@@ -93,8 +93,46 @@ c<- seq(1,7, length.out = 50)
 SNR<-sapply(c, normSNR )
 plot(c,SNR)
 
-names(t)<-c("d8  ","d12  ", "e8  ","e12  ","f8  ","f12  ", "g8  ","g12  ", "h8  ", "h12  ")
-table(t)
+
+n1<-f<-rnorm(1500,1/2,1/(2*1))
+n2<-f<-rnorm(1500,1/2,1/(2*2))
+n3<-f<-rnorm(1500,1/2,1/(2*3))
+n4<-f<-rnorm(1500,1/2,1/(2*4))
+n5<-f<-rnorm(1500,1/2,1/(2*5))
+n6<-f<-rnorm(1500,1/2,1/(2*6))
+n7<-f<-rnorm(1500,1/2,1/(2*7))
+
+#plot(n1)
+n1DB<-decibel(n1)
+n1Q<-quantize(n1, 8, 0,1)
+n1R<-n1-n1Q
+n1RDB<-decibel(n1R)
+n1RDB
+n1DB
+
+#plot(n3)
+n3DB<-decibel(n3)
+n3Q<-quantize(n3, 8, 0,1)
+n3R<-n3-n3Q
+n3RDB<-decibel(n3R)
+n3RDB
+n3DB
+
+plot(n5)
+n5DB<-decibel(n5)
+n5Q<-quantize(n5, 8, 0,1)
+n5R<-n5-n5Q
+n5RDB<-decibel(n5R)
+n5RDB
+n5DB
+
+#plot(n7)
+n7DB<-decibel(n7)
+n7Q<-quantize(n7, 8, 0,1)
+n7R<-n7-n7Q
+n7RDB<-decibel(n7R)
+n7RDB
+n7DB
 
 
 
