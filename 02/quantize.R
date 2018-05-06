@@ -29,7 +29,10 @@ GenSNR<- function(x, bits, min, max){
   rausch<- x-y
   return(SNR(x,rausch))
 }
-
+normSNR<-function(c){
+  normV<-rnorm(1500, 1/2,1/(2*c))
+  normSNR<-GenSNR(normV, 8, 0,1)
+}
 
 ####### b #########
 b<-sin(seq(0,pi,length=1500))
@@ -43,12 +46,20 @@ dSNR8<- GenSNR(d, 8,0,1)
 dSNR12<-GenSNR(d, 12,0,1)
 dSNR8
 dSNR12
+t<-vector(length=10)
+t[1]<-(dSNR8)
+t[2]<-(dSNR12)
+
+
+
 ###### e ########
 e<-runif(1500, 0,1)
 eSNR8<-GenSNR(e, 8, 0,1)
 eSNR12<-GenSNR(e,12,0,1)
 eSNR8
 eSNR12
+t[3]<-(eSNR8)
+t[4]<-(eSNR12)
 
 ##### f ########
 f<-rnorm(1500,1/2,1/8)
@@ -56,6 +67,8 @@ fSNR8<-GenSNR(f,8,0,1)
 fSNR12<-GenSNR(f,12,0,1)
 fSNR8
 fSNR12
+t[5]<-(fSNR8)
+t[6]<-(fSNR12)
 
 ##### g #######
 g<-seq(0,1, length.out = 1500)
@@ -63,6 +76,8 @@ gSNR8<-GenSNR(g,8,0,1)
 gSNR12<-GenSNR(g,12,0,1)
 gSNR8
 gSNR12
+t[7]<-(gSNR8)
+t[8]<-(gSNR12)
 
 ##### h #######
 h<-runif(1500, 0,1.05)
@@ -70,14 +85,16 @@ hSNR8<-GenSNR(h, 8, 0, 1.05)
 hSNR12<-GenSNR(h, 12,0, 1.05)
 hSNR8
 hSNR12
-
+t[9]<-(hSNR8)
+t[10]<-(hSNR12)
 
 ##### i #####
 c<- seq(1,7, length.out = 50)
-i<-sapply(c, normSNR )
-normSNR<-function(c){
-  normV<-rnorm(1500, 1/2,1/(2*c))
-  normSNR<-GenSNR(normV, 8, 0,1)
-}
-plot(c,i)
+SNR<-sapply(c, normSNR )
+plot(c,SNR)
+
+names(t)<-c("d8  ","d12  ", "e8  ","e12  ","f8  ","f12  ", "g8  ","g12  ", "h8  ", "h12  ")
+table(t)
+
+
 
