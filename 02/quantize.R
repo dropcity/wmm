@@ -32,6 +32,10 @@ GenSNR<- function(x, bits, min, max){
 
 
 ####### b #########
+b<-sin(seq(0,pi,length=1500))
+b_quant<-quantize(b,min= 0, max=1)
+b_quant
+b-b_quant
 
 ###### d #########
 d<-sin(seq(0,pi,length=1500))
