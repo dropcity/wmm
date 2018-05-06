@@ -102,6 +102,7 @@ n5<-f<-rnorm(1500,1/2,1/(2*5))
 n6<-f<-rnorm(1500,1/2,1/(2*6))
 n7<-f<-rnorm(1500,1/2,1/(2*7))
 
+#plot(ecdf(n4))
 #plot(n1)
 n1DB<-decibel(n1)
 n1Q<-quantize(n1, 8, 0,1)
@@ -134,5 +135,10 @@ n7RDB<-decibel(n7R)
 n7RDB
 n7DB
 
+##### Tabelle erstellen ####
+names(t) <- c("d) 8 bit", "d) 12 bit","e) 8 bit", "e) 12 bit", "f) 8 bit", "f) 12 bit", "g) 8 bit", "g) 12 bit", "h) 8 bit", "h) 12 bit")
+#write.table(t, file = "Wertetabelle.txt", col.names = NA, sep = "\t ")
 
+####tex Datei
+# https://www.overleaf.com/16033581dnrnvzytxdjd
 
